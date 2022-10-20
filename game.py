@@ -9,9 +9,15 @@ class occupiedField(Exception):
 
 
 class game:
+    # creating a game table
     def __init__(self):
         self.fields = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
+    # player choosing single-player or multiplayer mode
+    def single_multi(self, ):
+
+
+    # checking if a player made a move and win
     def ifWin(self, sym):
         if ((self.fields[0] == sym and self.fields[1] == sym and self.fields[2] == sym)
                 or (self.fields[3] == sym and self.fields[4] == sym and self.fields[5] == sym)
@@ -25,6 +31,7 @@ class game:
         else:
             return False
 
+    # function for one signle move
     def move(self, sym):
         while True:
             try:
