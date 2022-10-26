@@ -11,22 +11,22 @@ class occupiedField(Exception):
 class game:
     # creating a game table
     def __init__(self):
-        self.fields = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        self.fields = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 
     # player choosing single-player or multiplayer mode
-    def single_multi(self, ):
+    # def single_multi(self, option):
 
 
     # checking if a player made a move and win
     def ifWin(self, sym):
-        if ((self.fields[0] == sym and self.fields[1] == sym and self.fields[2] == sym)
-                or (self.fields[3] == sym and self.fields[4] == sym and self.fields[5] == sym)
-                or (self.fields[6] == sym and self.fields[7] == sym and self.fields[8] == sym)
-                or (self.fields[0] == sym and self.fields[4] == sym and self.fields[8] == sym)
-                or (self.fields[2] == sym and self.fields[4] == sym and self.fields[6] == sym)
-                or (self.fields[0] == sym and self.fields[3] == sym and self.fields[6] == sym)
-                or (self.fields[1] == sym and self.fields[4] == sym and self.fields[7] == sym)
-                or (self.fields[2] == sym and self.fields[5] == sym and self.fields[8] == sym)):
+        if ((self.fields[0][0] == sym and self.fields[0][1] == sym and self.fields[0][2] == sym)
+                or (self.fields[1][0] == sym and self.fields[1][1] == sym and self.fields[1][2] == sym)
+                or (self.fields[2][0] == sym and self.fields[2][1] == sym and self.fields[2][2] == sym)
+                or (self.fields[0][0] == sym and self.fields[1][1] == sym and self.fields[2][2] == sym)
+                or (self.fields[0][2] == sym and self.fields[1][1] == sym and self.fields[2][0] == sym)
+                or (self.fields[0][0] == sym and self.fields[1][0] == sym and self.fields[2][0] == sym)
+                or (self.fields[0][1] == sym and self.fields[1][1] == sym and self.fields[2][1] == sym)
+                or (self.fields[0][2] == sym and self.fields[1][2] == sym and self.fields[2][2] == sym)):
             return True
         else:
             return False
@@ -35,18 +35,16 @@ class game:
     def move(self, sym):
         while True:
             try:
-                m = int(input("Insert an index of a field: "))
+                m = int(input("Insert an index of a column: "))
+                n = int(input("Insert an index of a row: "))
 
                 # while m is not in the range of the table
-                if m < 0 or m > 8:
+                if m < 0 or m > 2 or n < 0 or n > 2:
                     raise anotherCharacterError
-                if self.fields[m] != " ":
+                if self.fields[n][m] != ' ':
                     raise occupiedField
 
-                # popping " " from the table
-                self.fields.pop(m)
-                # adding a symbol to the table
-                self.fields.insert(m, sym)
+                self.fields[n][m] = sym
                 self.printingTable()
 
             except ValueError:
@@ -61,9 +59,9 @@ class game:
             break
 
     def printingTable(self):
-        print(self.fields[0:3])
-        print(self.fields[3:6])
-        print(self.fields[6:9])
+        print(self.fields[0][0:3])
+        print(self.fields[1][0:3])
+        print(self.fields[2][0:3])
 
     def oneRound(self):
         print(f"Player {1}")
