@@ -27,7 +27,14 @@ class game_multi:
         else:
             return False
 
-    # function for one signle move
+    def isMoveAvailable(self):
+        for i in range(3):
+            for j in range(3):
+                if self.fields[i][j] == ' ':
+                    return True
+        return False
+
+    # function for one single move
     def move(self, sym):
         while True:
             try:
@@ -60,20 +67,28 @@ class game_multi:
         print(self.fields[2][0:3])
 
     def oneRound(self):
-        print(f"Player {1}")
-        self.move("x")
-        if self.ifWin("x"):
+        if self.isMoveAvailable():
+            print(f"Player {1}")
+            self.move("x")
+            if self.ifWin("x"):
+                return
+        else:
             return
 
-        print(f"Player {2}")
-        self.move("o")
-        if self.ifWin("o"):
+        if self.isMoveAvailable():
+            print(f"Player {2}")
+            self.move("o")
+            if self.ifWin("o"):
+                return
+        else:
             return
 
     def play(self):
-        while self.ifWin("x") is not True and self.ifWin("o") is not True:
+        while self.ifWin("x") is not True and self.ifWin("o") is not True and self.isMoveAvailable() is True:
             self.oneRound()
         if self.ifWin("x"):
             return "Player 1 win."
         if self.ifWin("o"):
             return "Player 2 win."
+        if not self.isMoveAvailable():
+            return "Check!"

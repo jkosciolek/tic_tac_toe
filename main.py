@@ -1,4 +1,5 @@
 from game_multi import game_multi
+from game_single import game_single
 
 
 class anotherCharacterError(Exception):
@@ -15,9 +16,9 @@ if __name__ == '__main__':
             if mode == 'multi':
                 game1 = game_multi()
                 print(game1.play())
-            # elif mode == 'single':
-            #     game1 = game_single()
-            #     print(game1.play())
+            elif mode == 'single':
+                game1 = game_single()
+                print(game1.play())
             else:
                 raise anotherCharacterError
         except anotherCharacterError:
