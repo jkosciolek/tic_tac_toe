@@ -8,14 +8,10 @@ class occupiedField(Exception):
     pass
 
 
-class game:
+class game_multi:
     # creating a game table
     def __init__(self):
         self.fields = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
-
-    # player choosing single-player or multiplayer mode
-    # def single_multi(self, option):
-
 
     # checking if a player made a move and win
     def ifWin(self, sym):
