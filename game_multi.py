@@ -15,18 +15,38 @@ class game_multi:
 
     # checking if a player made a move and win
     def ifWin(self, sym):
-        if ((self.fields[0][0] == sym and self.fields[0][1] == sym and self.fields[0][2] == sym)
-                or (self.fields[1][0] == sym and self.fields[1][1] == sym and self.fields[1][2] == sym)
-                or (self.fields[2][0] == sym and self.fields[2][1] == sym and self.fields[2][2] == sym)
-                or (self.fields[0][0] == sym and self.fields[1][1] == sym and self.fields[2][2] == sym)
-                or (self.fields[0][2] == sym and self.fields[1][1] == sym and self.fields[2][0] == sym)
-                or (self.fields[0][0] == sym and self.fields[1][0] == sym and self.fields[2][0] == sym)
-                or (self.fields[0][1] == sym and self.fields[1][1] == sym and self.fields[2][1] == sym)
-                or (self.fields[0][2] == sym and self.fields[1][2] == sym and self.fields[2][2] == sym)):
-            return True
-        else:
-            return False
+        # if ((self.fields[0][0] == sym and self.fields[0][1] == sym and self.fields[0][2] == sym)
+        #         or (self.fields[1][0] == sym and self.fields[1][1] == sym and self.fields[1][2] == sym)
+        #         or (self.fields[2][0] == sym and self.fields[2][1] == sym and self.fields[2][2] == sym)
+        #         or (self.fields[0][0] == sym and self.fields[1][1] == sym and self.fields[2][2] == sym)
+        #         or (self.fields[0][2] == sym and self.fields[1][1] == sym and self.fields[2][0] == sym)
+        #         or (self.fields[0][0] == sym and self.fields[1][0] == sym and self.fields[2][0] == sym)
+        #         or (self.fields[0][1] == sym and self.fields[1][1] == sym and self.fields[2][1] == sym)
+        #         or (self.fields[0][2] == sym and self.fields[1][2] == sym and self.fields[2][2] == sym)):
+        #     return True
+        # else:
+        #     return False
 
+        # rows
+        for row in range(3):
+            if self.fields[row][0] == self.fields[row][1] and self.fields[row][1] == self.fields[row][2]:
+                if self.fields[row][0] == sym:
+                    return True
+        # columns
+        for col in range(3):
+            if self.fields[0][col] == self.fields[1][col] and self.fields[1][col] == self.fields[2][col]:
+                if self.fields[0][col] == sym:
+                    return True
+        # diagonals
+        if self.fields[0][0] == self.fields[1][1] and self.fields[1][1] == self.fields[2][2]:
+            if self.fields[0][0] == sym:
+                return True
+
+        if self.fields[0][2] == self.fields[1][1] and self.fields[1][1] == self.fields[2][0]:
+            if self.fields[0][2] == sym:
+                return True
+
+    # checking if a move is available
     def isMoveAvailable(self):
         for i in range(3):
             for j in range(3):
