@@ -88,7 +88,7 @@ class game_multi:
 
     def oneRound(self):
         if self.isMoveAvailable():
-            print(f"Player {1}")
+            print(f"\nPlayer {1}")
             self.move("x")
             if self.ifWin("x"):
                 return
@@ -96,7 +96,7 @@ class game_multi:
             return
 
         if self.isMoveAvailable():
-            print(f"Player {2}")
+            print(f"\nPlayer {2}")
             self.move("o")
             if self.ifWin("o"):
                 return
@@ -107,8 +107,8 @@ class game_multi:
         while self.ifWin("x") is not True and self.ifWin("o") is not True and self.isMoveAvailable() is True:
             self.oneRound()
         if self.ifWin("x"):
-            return "Player 1 win."
+            return "\nPlayer 1 win."
         if self.ifWin("o"):
-            return "Player 2 win."
+            return "\nPlayer 2 win."
         if not self.isMoveAvailable():
-            return "Check!"
+            return "\nCheck!"
