@@ -1,5 +1,6 @@
 from game_multi import game_multi
 from game_single_random import game_single_random
+from app import App
 
 
 class anotherCharacterError(Exception):
@@ -13,6 +14,8 @@ if __name__ == '__main__':
     while playing == "yes":
 
         while True:
+            app = App()
+            app.mainloop()
             try:
                 mode = input("\n\nPlease type 'single' if you want to play in a singleplayer mode"
                              " or 'multi' if you want to play in a multiplayer mode: ")
@@ -29,3 +32,5 @@ if __name__ == '__main__':
             break
 
         playing = input("Do you want to play again? Type 'yes' or 'no': ")
+
+
